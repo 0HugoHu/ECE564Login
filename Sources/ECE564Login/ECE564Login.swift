@@ -15,6 +15,8 @@ public struct ECE564Login: View {
     @State private var isViewVisible = true
     @State private var authPass: Bool = false
     
+    public init() {}
+    
     
     public var body: some View {
         if isViewVisible {
