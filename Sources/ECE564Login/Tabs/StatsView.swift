@@ -14,23 +14,38 @@ struct StatsView: View {
     @StateObject private var dataModel = DukePersonDictTA()
     @State private var isLoading: Bool = true
     @State private var cancellable: AnyCancellable?
+    let gradientColor = Color(red: 0.61, green: 0.56, blue: 0.74)
     
     var body: some View {
         GeometryReader { geometry in
             let width = geometry.size.width
             let height = geometry.size.height
-            VStack {
-                if !isLoading {
-                    DukeStatsView()
-                        .environmentObject(dataModel)
-                } else {
-                    LoadingIndicator(animation: .pulse, color: .white, size: .large, speed: .normal)
-                    
-                    Text("Loading")
-                        .font(titleFontDefaultSize).foregroundColor(.white)
+            ZStack {
+                VStack {
+                    if !isLoading {
+                        DukeStatsView()
+                            .environmentObject(dataModel)
+                    } else {
+                        LoadingIndicator(animation: .pulse, color: .white, size: .large, speed: .normal)
+                        
+                        Text("Loading")
+                            .font(titleFontDefaultSize).foregroundColor(.white)
+                    }
                 }
+                .frame(width: width, height: height * 0.93)
+                
+                LinearGradient(
+                    gradient: Gradient(stops: [
+                        Gradient.Stop(color: gradientColor.opacity(0.7), location: 0),
+                        Gradient.Stop(color: gradientColor.opacity(0), location: 1)
+                    ]),
+                    startPoint: .bottom,
+                    endPoint: .top
+                )
+                .frame(height: height * 0.03)
+                .offset(y: height - height * 0.54)
             }
-            .frame(width: width, height: height * 0.93)
+            .frame(width: width, height: height)
         }
         .onAppear {
             if dataModel.download() {
