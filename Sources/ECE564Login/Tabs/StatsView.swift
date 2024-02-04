@@ -34,18 +34,20 @@ struct StatsView: View {
                 }
                 .frame(width: width, height: height * 0.93)
                 
-                LinearGradient(
-                    gradient: Gradient(stops: [
-                        Gradient.Stop(color: gradientColor.opacity(0.7), location: 0),
-                        Gradient.Stop(color: gradientColor.opacity(0), location: 1)
-                    ]),
-                    startPoint: .bottom,
-                    endPoint: .top
-                )
-                .frame(height: height * 0.03)
-                .offset(y: height - height * 0.54)
+                if !isLoading {
+                    LinearGradient(
+                        gradient: Gradient(stops: [
+                            Gradient.Stop(color: gradientColor.opacity(0.7), location: 0),
+                            Gradient.Stop(color: gradientColor.opacity(0), location: 1)
+                        ]),
+                        startPoint: .bottom,
+                        endPoint: .top
+                    )
+                    .frame(height: height * 0.02)
+                    .offset(y: height - height * 0.54)
+                }
             }
-            .frame(width: width, height: height)
+            .frame(width: width, height: height * 0.93)
         }
         .onAppear {
             if dataModel.download() {
