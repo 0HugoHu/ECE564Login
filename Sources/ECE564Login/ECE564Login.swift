@@ -18,7 +18,7 @@ struct ECE564LoginApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ECE564Login()
+            ECE564LoginView()
                 .environmentObject(tabSelection)
                 .environmentObject(userSettings)
                 .onAppear {
@@ -37,7 +37,7 @@ struct ECE564LoginApp: App {
 }
 
 
-struct ECE564Login: View {
+struct ECE564LoginView: View {
     @EnvironmentObject private var tabSelection: TabSelection
     @EnvironmentObject private var userSettings: UserSettings
     @State private var isViewVisible = true
@@ -72,5 +72,5 @@ class Appearance: ObservableObject {
 }
 
 #Preview {
-    ECE564Login()
+    ECE564LoginView()
 }
