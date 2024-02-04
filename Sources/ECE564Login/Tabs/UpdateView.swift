@@ -31,7 +31,7 @@ struct UpdateView: View {
             )
             
             VStack {
-                LottieView(animationFileName: "Animation-Tab2", loopMode: .loop)
+                LottieViewTA(animationFileName: "Animation-Tab2", loopMode: .loop)
                     .frame(width: width * 0.75, height: width * 0.75)
                     .overlay(
                         VStack {

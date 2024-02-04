@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Lottie
 
 extension View {
     func placeholder<Content: View>(
@@ -24,5 +25,30 @@ extension View {
         )
     }
 }
+
+
+struct LottieViewTA: UIViewRepresentable {
+    var animationFileName: String
+    let loopMode: LottieLoopMode
+    let bundle: Bundle
+    
+    init(animationFileName: String, loopMode: LottieLoopMode, bundle: Bundle = Bundle.module) {
+        self.animationFileName = animationFileName
+        self.loopMode = loopMode
+        self.bundle = bundle
+    }
+    
+    func updateUIView(_ uiView: LottieAnimationView, context: Context) {
+        // Update code if needed
+    }
+    
+    func makeUIView(context: Context) -> LottieAnimationView {
+        let animationView = LottieAnimationView(name: animationFileName, bundle: bundle)
+        animationView.play()
+        animationView.contentMode = .scaleAspectFill
+        return animationView
+    }
+}
+
 
 
