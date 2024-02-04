@@ -11,7 +11,7 @@ import UIKit
 import SwiftUI
 
 func loadImage(named fileName: String, withExtension fileExtension: String) -> UIImage? {
-    guard let imageURL = Bundle.main.url(forResource: fileName, withExtension: fileExtension) else {
+    guard let imageURL = Bundle.module.url(forResource: fileName, withExtension: fileExtension) else {
         print("Image file not found in the bundle")
         return nil
     }
@@ -32,7 +32,7 @@ func loadImage(named fileName: String, withExtension fileExtension: String) -> U
 
 
 func loadCustomFont(name: String, extension: String, size: CGFloat) -> Font {
-    if let fontURL = Bundle.main.url(forResource: name, withExtension: `extension`) {
+    if let fontURL = Bundle.module.url(forResource: name, withExtension: `extension`) {
         do {
             let fontData = try Data(contentsOf: fontURL)
             let provider = CGDataProvider(data: fontData as CFData)
