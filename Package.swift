@@ -25,7 +25,8 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "ECE564Login",
-            dependencies: [.product(name: "Lottie", package: "lottie-spm"), .product(name: "PaperOnboarding", package: "paper-onboarding"), "LoadingButton", "SwiftfulLoadingIndicators"]),
+            dependencies: [.product(name: "Lottie", package: "lottie-spm"), .product(name: "PaperOnboarding", package: "paper-onboarding"), "LoadingButton", "SwiftfulLoadingIndicators"],
+            resources: [.copy("Resources/Animation-Tab1.json"), .copy("Resources/Animation-Tab2.json"), .copy("Resources/Check.png"), .copy("Resources/Compass.png"), .copy("Resources/Empty.png"), .copy("Resources/Info.png"), .copy("Resources/Nunito-Bold.ttf"), .copy("Resources/Nunito-Regular.ttf"), .copy("Resources/Nunito-Light.ttf"), .copy("Resources/OpenSans-Regular.ttf")]),
         .testTarget(
             name: "ECE564LoginTests",
             dependencies: ["ECE564Login"]),
