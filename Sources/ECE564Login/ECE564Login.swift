@@ -9,14 +9,14 @@ import SwiftUI
 import Combine
 
 
-struct ECE564Login: View {
+public struct ECE564Login: View {
     @StateObject private var tabSelection = TabSelection()
     @StateObject private var userSettings = UserSettings()
     @State private var isViewVisible = true
     @State private var authPass: Bool = false
     
     
-    var body: some View {
+    public var body: some View {
         if isViewVisible {
             ZStack {
                 PaperOnboardingSwiftUIView()
