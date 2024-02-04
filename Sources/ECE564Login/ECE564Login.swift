@@ -8,20 +8,46 @@
 import SwiftUI
 import Combine
 
-#if canImport(UIKit)
-struct ECE564Login: View {
+
+@main
+struct ECE564LoginApp: App {
     @StateObject private var tabSelection = TabSelection()
     @StateObject private var userSettings = UserSettings()
     @State private var isViewVisible = true
     @State private var authPass: Bool = false
-    
-    
+
+    var body: some Scene {
+        WindowGroup {
+            ECE564Login()
+                .environmentObject(tabSelection)
+                .environmentObject(userSettings)
+                .onAppear {
+                    if #available(iOS 15.0, *) {
+                        Appearance.shared.defaultMode = .light
+                    } else {
+                        UserDefaults.standard.set(false, forKey: "AppleInterfaceStyle")
+                    }
+                    userSettings.authString = "InitialValue"
+                }
+                .onReceive(userSettings.$authString) { newValue in
+                    isViewVisible = !isViewVisible
+                }
+        }
+    }
+}
+
+
+struct ECE564Login: View {
+    @EnvironmentObject private var tabSelection: TabSelection
+    @EnvironmentObject private var userSettings: UserSettings
+    @State private var isViewVisible = true
+
     var body: some View {
         if isViewVisible {
             ZStack {
                 PaperOnboardingSwiftUIView()
                     .environmentObject(tabSelection)
-                
+
                 // Switch Views
                 switch tabSelection.currentTab {
                 case 0: LoginView().environmentObject(userSettings)
@@ -29,14 +55,6 @@ struct ECE564Login: View {
                 case 2: StatsView()
                 default: LoginView()
                 }
-            }
-            .onAppear {
-                if #available(iOS 15.0, *) {
-                    Appearance.shared.defaultMode = .light
-                } else {
-                    UserDefaults.standard.set(false, forKey: "AppleInterfaceStyle")
-                }
-                userSettings.authString = "InitialValue"
             }
             .onReceive(userSettings.$authString) { newValue in
                 isViewVisible = !isViewVisible
@@ -56,4 +74,3 @@ class Appearance: ObservableObject {
 #Preview {
     ECE564Login()
 }
-#endif
