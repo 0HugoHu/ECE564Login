@@ -129,6 +129,9 @@ struct UpdateView: View {
     
     
     private func submitAction() {
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.impactOccurred()
+        
         DispatchQueue.main.async {
             isError = .NO_ERROR
             guard newPassword == newPasswordConfirm else {

@@ -43,6 +43,11 @@ public struct ECE564Login: View {
             .onReceive(userSettings.$authString) { newValue in
                 isViewVisible = !isViewVisible
             }
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                let generator = UIImpactFeedbackGenerator(style: .medium)
+                generator.impactOccurred()
+            }
         }
     }
 }

@@ -30,7 +30,6 @@ struct LoginView: View {
             )
             
             VStack {
-                
                 LottieViewTA(animationFileName: "Animation-Tab1", loopMode: .loop)
                     .frame(width: width * 0.75, height: width * 0.75)
                     .overlay(
@@ -95,6 +94,8 @@ struct LoginView: View {
     
     
     private func submitAction() {
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.impactOccurred()
         isError = .NO_ERROR
         guard dataModel.downloadProgress == 1.0 else {
             DispatchQueue.main.async {
