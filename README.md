@@ -5,6 +5,9 @@ This is the ```login``` module for Duke iOS Development course. Students need to
 
 **This module has no support for dark mode**
 
+v0.1.1 update: Add haptic feedback, and fix secure text field issue.
+
+
 ### 0. Prerequisites
 - Xcode 15.0+
 - Swift 5.5+
