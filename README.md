@@ -62,7 +62,7 @@ struct ContentView: View {
 
             // Add the following code to embed the login module
             // You have to add this code at the bottom of ZStack
-            ECE564LoginView()
+            ECE564Login()
         }
     }
 }
